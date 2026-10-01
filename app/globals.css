@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+/*
+ * Tokens visuais da Tuia Joias, extraídos do design em
+ * "# Redesign Joalheria Premium/". Use as classes geradas
+ * (bg-ivory, text-gold, border-line…) em vez de cores soltas.
+ */
+@theme inline {
+  --font-serif: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-hanken), system-ui, -apple-system, sans-serif;
+}
+
+@theme {
+  /* Superfícies escuras */
+  --color-ink: #241f1a;
+  --color-ink-2: #3b342b;
+  --color-ink-3: #2a241e;
+
+  /* Superfícies claras */
+  --color-ivory: #fbf8f3;
+  --color-sand: #f4eee5;
+  --color-cream: #f6f0e6;
+  --color-cream-2: #f1e9dc;
+  --color-cream-3: #efe7d9;
+
+  /* Linhas e bordas finas */
+  --color-line: #e3d9ca;
+  --color-line-soft: #e7decd;
+  --color-line-strong: #dfd4c1;
+  --color-line-input: #dccfb6;
+  --color-line-field: #e0d5c1;
+  --color-line-dash: #d6c9b2;
+
+  /* Texto */
+  --color-ink-soft: #3d362e;
+  --color-body: #544c42;
+  --color-body-muted: #6b6155;
+  --color-label: #7a6a50;
+  --color-label-soft: #8a7a5e;
+  --color-mute: #8f8471;
+  --color-mute-2: #a3937a;
+  --color-mute-3: #b7ac9b;
+
+  /* Texto sobre fundo escuro */
+  --color-on-dark: #f3eada;
+  --color-on-dark-soft: #cdc2af;
+  --color-on-dark-muted: #9a8f7c;
+  --color-on-dark-faint: #7c7364;
+
+  /* Dourados */
+  --color-gold: #9c7726;
+  --color-gold-hover: #856320;
+  --color-gold-deep: #6f5417;
+  --color-gold-soft: #c9a85c;
+  --color-gold-light: #e0b963;
+  --color-gold-muted: #b39a63;
+  --color-gold-pale: #eadfc6;
+  --color-gold-wash: #f7efdf;
+
+  /* Estados */
+  --color-danger: #8a2f22;
+  --color-whatsapp: #1e8f53;
+  --color-whatsapp-hover: #177343;
+
+  /* Animações */
+  --animate-marquee: marquee 46s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-pulse-dot: pulse-dot 2.4s ease-in-out infinite;
+  --animate-fade-in: fade-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+
+  @keyframes pulse-dot {
+    0%,
+    100% {
+      opacity: 0.35;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.9;
+      transform: scale(1.35);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-wrap: pretty;
+  }
+
+  a {
+    color: var(--color-gold);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-gold-deep);
+  }
+
+  ::selection {
+    background-color: var(--color-gold-pale);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
