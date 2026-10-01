@@ -1,4 +1,5 @@
 import { SITE } from "@/lib/site";
+import { OfficeMap } from "./OfficeMap";
 import { Reveal } from "./Reveal";
 
 export function MapSection() {
@@ -14,16 +15,7 @@ export function MapSection() {
           </a>
         </Reveal>
         <Reveal className="overflow-hidden border border-line shadow-[0_18px_40px_rgba(36,31,26,.08)]">
-          <iframe
-            src={SITE.address.mapsEmbedUrl}
-            width="100%"
-            height="380"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Mapa da oficina Tuia Joias"
-            className="block border-0 contrast-[.95] grayscale-[.35]"
-            allowFullScreen
-          />
+          <OfficeMap />
         </Reveal>
       </div>
     </section>

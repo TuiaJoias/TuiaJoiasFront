@@ -129,7 +129,7 @@ export const FAQ = [
   },
   {
     q: "A joia tem garantia?",
-    a: "Sim. Toda peça sai com garantia por escrito contra defeito de fabricação, e consertos feitos aqui também são cobertos. Polimento de manutenção é cortesia para quem é cliente.",
+    a: "Sim. Toda peça sai com garantia por escrito contra defeito de fabricação.",
   },
 ];
 

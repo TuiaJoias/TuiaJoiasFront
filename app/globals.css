@@ -154,3 +154,225 @@
     }
   }
 }
+
+/*
+ * Mapa da oficina (Leaflet), com a paleta do site.
+ * Fica fora de @layer de propósito: o CSS do Leaflet não usa camadas, e
+ * regras em camada sempre perdem para ele. O prefixo .tuia-map .leaflet-container
+ * dá a especificidade necessária para vencer os estilos padrão do Leaflet.
+ */
+.tuia-map .leaflet-container {
+  background: var(--color-cream-2);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--color-ink);
+}
+
+.tuia-map .leaflet-container:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: -2px;
+}
+
+/* Tiles em tons de areia: sem cor, com leve sépia e contraste baixo. */
+/* Filtro em cada tile, e não no painel inteiro: no painel, o Chrome deixa
+   visíveis as emendas entre os tiles. */
+.tuia-map .leaflet-tile {
+  filter: grayscale(1) sepia(0.38) saturate(0.85) brightness(1.04) contrast(0.88);
+}
+
+.tuia-map-vignette {
+  z-index: 500;
+  box-shadow:
+    inset 0 0 0 1px rgba(36, 31, 26, 0.04),
+    inset 0 0 90px rgba(36, 31, 26, 0.1);
+}
+
+/* Pino: losango dourado (o mesmo motivo do site) com halo pulsando. */
+.tuia-map .tuia-map-pin {
+  background: none;
+  border: 0;
+}
+
+.tuia-map-pin-halo {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 168, 92, 0.6);
+  background: rgba(201, 168, 92, 0.2);
+  animation: tuia-map-halo 2.8s ease-in-out infinite;
+}
+
+.tuia-map-pin-gem {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  transform: rotate(45deg);
+  background: var(--color-gold-soft);
+  border: 2px solid var(--color-ivory);
+  box-shadow:
+    0 0 0 1px var(--color-gold),
+    0 6px 14px rgba(36, 31, 26, 0.35);
+  transition: background-color 0.25s ease;
+}
+
+.tuia-map .tuia-map-pin:hover .tuia-map-pin-gem {
+  background: var(--color-gold);
+}
+
+@keyframes tuia-map-halo {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+/* Nome fixo ao lado do pino. */
+.tuia-map .leaflet-container .tuia-map-label {
+  padding: 3px 12px 4px;
+  background: rgba(251, 248, 243, 0.96);
+  border: 1px solid var(--color-line-strong);
+  border-radius: 2px;
+  box-shadow: 0 8px 20px rgba(36, 31, 26, 0.12);
+  color: var(--color-ink);
+  font-family: var(--font-serif);
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.tuia-map .leaflet-container .tuia-map-label::before {
+  display: none;
+}
+
+/* Balão com endereço e rota. */
+.tuia-map .leaflet-container .tuia-map-popup .leaflet-popup-content-wrapper {
+  padding: 0;
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  border: 1px solid var(--color-line-strong);
+  border-radius: 2px;
+  box-shadow: 0 18px 40px rgba(36, 31, 26, 0.16);
+}
+
+.tuia-map .leaflet-container .tuia-map-popup .leaflet-popup-tip {
+  background: var(--color-ivory);
+  box-shadow: 0 0 0 1px var(--color-line-strong);
+}
+
+.tuia-map .leaflet-container .tuia-map-popup .leaflet-popup-content {
+  margin: 18px 24px 20px 22px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.tuia-map .leaflet-container .tuia-map-popup .leaflet-popup-content p {
+  margin: 0;
+}
+
+.tuia-map .leaflet-container a.leaflet-popup-close-button {
+  top: 6px;
+  right: 6px;
+  color: var(--color-mute);
+  font-size: 20px;
+}
+
+.tuia-map .leaflet-container a.leaflet-popup-close-button:hover {
+  color: var(--color-ink);
+}
+
+.tuia-map .tuia-map-popup-eyebrow {
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-label);
+}
+
+.tuia-map .leaflet-container .tuia-map-popup .tuia-map-popup-title {
+  margin: 4px 0 8px;
+  font-family: var(--font-serif);
+  font-size: 24px;
+  line-height: 1.15;
+}
+
+.tuia-map .tuia-map-popup-text {
+  color: var(--color-body);
+}
+
+.tuia-map .leaflet-container .tuia-map-popup .tuia-map-popup-muted {
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--color-label);
+}
+
+.tuia-map .leaflet-container a.tuia-map-popup-link {
+  display: inline-block;
+  margin-top: 12px;
+  padding-bottom: 1px;
+  border-bottom: 1px solid var(--color-gold-soft);
+  color: var(--color-gold);
+  font-size: 15px;
+}
+
+.tuia-map .leaflet-container a.tuia-map-popup-link:hover {
+  color: var(--color-gold-deep);
+}
+
+/* Botões de zoom. */
+.tuia-map .leaflet-container .leaflet-bar {
+  border: 1px solid var(--color-line-strong);
+  border-radius: 2px;
+  box-shadow: 0 8px 20px rgba(36, 31, 26, 0.1);
+}
+
+.tuia-map .leaflet-container .leaflet-bar a {
+  width: 36px;
+  height: 36px;
+  line-height: 34px;
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  border-bottom: 1px solid var(--color-line);
+  font-size: 18px;
+  font-weight: 400;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.tuia-map .leaflet-container .leaflet-bar a:last-child {
+  border-bottom: 0;
+}
+
+.tuia-map .leaflet-container .leaflet-bar a:first-child,
+.tuia-map .leaflet-container .leaflet-bar a:last-child {
+  border-radius: 0;
+}
+
+.tuia-map .leaflet-container .leaflet-bar a:hover {
+  background: var(--color-cream);
+  color: var(--color-gold);
+}
+
+.tuia-map .leaflet-container .leaflet-bar a.leaflet-disabled {
+  background: var(--color-cream-2);
+  color: var(--color-mute-3);
+}
+
+/* Crédito do OpenStreetMap (obrigatório), discreto. */
+.tuia-map .leaflet-container .leaflet-control-attribution {
+  padding: 2px 8px;
+  background: rgba(251, 248, 243, 0.85);
+  color: var(--color-label);
+  font-size: 11px;
+}
+
+.tuia-map .leaflet-container .leaflet-control-attribution a {
+  color: var(--color-body-muted);
+}

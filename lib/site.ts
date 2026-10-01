@@ -1,4 +1,4 @@
-/** Endereço usado na busca do Google Maps (link "Traçar rota" e mapa embutido). */
+/** Endereço usado na busca do Google Maps (link "Traçar rota"). */
 const MAPS_QUERY = encodeURIComponent("R. Rio Grande do Sul, 222 - Centro, Cascavel - PR");
 
 /** Dados fixos da oficina usados no site público. */
@@ -21,8 +21,11 @@ export const SITE = {
     state: "PR",
     full: "R. Rio Grande do Sul, 222 — Centro, Cascavel/PR",
     mapsUrl: `https://maps.google.com/?q=${MAPS_QUERY}`,
-    /** Embed por endereço: não precisa de chave de API e acompanha o endereço acima. */
-    mapsEmbedUrl: `https://www.google.com/maps?q=${MAPS_QUERY}&z=17&hl=pt-BR&output=embed`,
+    /**
+     * Posição do pino no mapa da home. Ponto que o Google retorna para o
+     * endereço acima. Se o endereço mudar, atualize as duas coisas juntas.
+     */
+    coordinates: { lat: -24.956935, lng: -53.452093 },
   },
   hours: "Seg a Sex · 9h às 18h",
 } as const;

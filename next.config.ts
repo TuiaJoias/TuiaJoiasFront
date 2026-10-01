@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 // Headers básicos de segurança. A Content-Security-Policy completa
-// (origem da API, Supabase, iframe do Google Maps) entra na etapa de deploy.
+// (origem da API, Supabase e img-src para os tiles do mapa em
+// tile.openstreetmap.org) entra na etapa de deploy.
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
